@@ -1,0 +1,12 @@
+{"no_classes": "3",
+  "no_epochs" : "20",
+  "batch_size": "10",
+  "class_names": "CN MCI AD",
+  "channels" : "62",
+  "width" : "96",
+  "height" : "96",
+  "optimizer" : "adam",
+  "loss" : "categorical_crossentropy",
+  "download_imgs" : "C:/Users/camel/PycharmProjects/untitled3/download",
+  "weights_path": "C:/Users/camel/PycharmProjects/alzheimers_detection/weights_file.h5"
+}

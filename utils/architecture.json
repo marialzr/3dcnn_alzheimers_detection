@@ -1,0 +1,42 @@
+{
+  "layers": [
+    {
+      "type": "convolutional",
+      "kernel_size": 3,
+      "no_filters": 8
+    },
+    {
+      "type": "pooling",
+      "pool_size": 3
+    },
+    {
+      "type": "convolutional",
+      "kernel_size": 3,
+      "no_filters": 8
+    },
+    {
+      "type": "pooling",
+      "pool_size": 3
+    },
+    {
+      "type": "flatten"
+    },
+    {
+      "type": "dense",
+      "no_units": 1000,
+      "activation_function": "relu"
+    },
+    {
+      "type": "dropout",
+      "rate": 0.5
+    },
+    {
+      "type": "dense",
+      "no_units": 3,
+      "activation_function": "softmax"
+    }
+  ]
+}
+
+
+

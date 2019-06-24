@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alzheimer's detection</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Alzheimer's Disease </title>
+    <link rel="stylesheet" type="text/css" href="../static/pstyle.css">
+</head>
+
+<body>
+
+<h1>Test image</h1>
+
+<div class="divmare">
+    <button type="button" class="bigbutton" onclick="prezice()"> Predict on existing arhitecture</button>
+    <button type="button" class="bigbutton" onclick="train()"> Train your own arhitecture</button>
+</div>
+
+
+<div class="bg-modal"></div>
+<div class="modal-opac">
+    <div class="modal-content">
+        <div class="close"> +</div>
+        <p class="scris"><b> Predict Alzheimer's Disease </b></p> <br>
+
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+            <label for="file-upload" class="custom-file-upload">
+                <i class="fa fa-cloud-upload"></i> Upload Image
+            </label>
+
+            <input id="file-upload" name='inputFile' type="file" style="display:none;" required>
+
+            <br>
+            <input type="submit" value="Predict" name="submit_button" class="buton" onclick="modal()">
+            <input type="submit" value="Show image" name="submit_button" class="buton" onclick="show()">
+
+            <p class="afis">
+                The patient is healthy as a horse.
+            </p>
+
+            <div class="imagini">
+                <img src="{{img_name2}}" alt="Imagine" class="imaginesingura">
+                <div class="imagine">
+                    <img class="clasaimagine" src="{{img_name1}}" alt="Image">
+                </div>
+            </div>
+            <div class="hidediv">
+                <button type="button" onclick="hide()" class="buton"> Hide image</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="bg-modal"></div>
+<div class="modal-opac-signup">
+    <div class="modal-cont">
+        <div class="closesign"> +</div>
+        <form method="POST" action="/custom" enctype="multipart/form-data" , name="customarhitecture">
+            <p class="scris"><b> Build your own arhitecture </b></p> <br>
+            <label for="another-file-upload" class="custom-file-upload">
+                <i class="fa fa-cloud-upload"></i> Choose arhitecture file
+            </label>
+            <input id="another-file-upload" name='anotherInputFile' type="file" style="display:none;" required>
+            <br>
+            <input type="submit" value="Train" name="submit_button" class="buton" onclick="custompredict()">
+            <br>
+            <div class="custompredict">
+                <img src="../static/loadinggif.gif" class="loadingclass">
+                <br>
+                <p class="scrismic"> Please wait for program to train... </p> <br>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<div class="bg-modal"></div>
+<div class="modal-opac-signupp">
+    <div class="modal-cont">
+        <div class="closepredict"> +</div>
+        <p class="scris"> The result is </p>
+        <label class="scris">{{result}}</label>
+    </div>
+</div>
+
+
+<script>
+
+    function prezice() {
+        document.querySelector('.bg-modal').style.display = 'none';
+        document.querySelector('.modal-opac-signup').style.display = 'none';
+        document.querySelector('.bg-modal').style.display = 'flex';
+        document.querySelector('.modal-opac').style.display = 'flex';
+        document.querySelector('.hidediv').style.display = 'none';
+    }
+
+    function train() {
+        document.querySelector('.bg-modal').style.display = 'none';
+        document.querySelector('.modal-opac').style.display = 'none';
+        document.querySelector('.bg-modal').style.display = 'flex';
+        document.querySelector('.modal-opac-signup').style.display = 'flex';
+    }
+
+    function show() {
+        document.querySelector('.imagini').style.display = 'inline-block';
+        document.querySelector('.hidediv').style.display = 'inline-block';
+
+    }
+
+    function hide() {
+        document.querySelector('.imagini').style.display = 'none';
+        document.querySelector('.hidediv').style.display = 'none';
+    }
+
+    function custompredict() {
+        document.querySelector('.custompredict').style.display = 'inline-block';
+    }
+
+    function modal() {
+        document.querySelector('.bg-modal').style.display = 'none';
+        document.querySelector('.modal-opac').style.display = 'none';
+        document.querySelector('.bg-modal').style.display = 'flex';
+        document.querySelector('.modal-opac-signup').style.display = 'none';
+        document.querySelector('.modal-opac-signupp').style.display = 'flex';
+        document.querySelector('.custompredict').style.display = 'none';
+    }
+
+
+    document.querySelector('.close').addEventListener('click',
+        function () {
+            document.querySelector('.bg-modal').style.display = 'none';
+            document.querySelector('.modal-opac').style.display = 'none';
+            document.querySelector('.imagini').style.display = 'none';
+        }
+    );
+
+    document.querySelector('.closesign').addEventListener('click',
+        function () {
+            document.querySelector('.bg-modal').style.display = 'none';
+            document.querySelector('.modal-opac-signup').style.display = 'none';
+        }
+    );
+
+    document.querySelector('.closepredict').addEventListener('click',
+        function () {
+            document.querySelector('.bg-modal').style.display = 'none';
+            document.querySelector('.modal-opac-signupp').style.display = 'none';
+        }
+    );
+
+    $('#file-upload').change(function () {
+        var i = $(this).prev('label').clone();
+        var file = $('#file-upload')[0].files[0].name;
+        $(this).prev('label').text(file);
+    });
+
+    $('#another-file-upload').change(function () {
+        var i = $(this).prev('label').clone();
+        var file = $('#another-file-upload')[0].files[0].name;
+        $(this).prev('label').text(file);
+    });
+
+</script>
+
+
+</body>
+</html>
